@@ -1,13 +1,10 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { Product } from "../../utils/models/product.model";
+import { Injectable } from '@angular/core';
+import { Product } from 'src/app/utils/models/product.model';
 
-@Component({
-  selector: "app-products",
-  templateUrl: "./products.component.html",
-  styleUrls: ["./products.component.scss"],
+@Injectable({
+  providedIn: 'root'
 })
-
-export class ProductsComponent {
+export class ProductsService {
   products: Product[] = [
     {
       id: '1',
@@ -53,7 +50,13 @@ export class ProductsComponent {
     }
   ];
 
-  clickProduct(id: number) {
-    console.log(id);
+  constructor() { }
+
+  getAllProducts() {
+    return this.products;
+  }
+
+  getProduct(id: string) {
+    return this.products.find(item => item.id === id);
   }
 }
